@@ -14,12 +14,14 @@ class ParkingLotTest {
     }
 
     @Test
-    void shouldParkTheVehicle(){
+    void shouldParkTheCar(){
 
-        Vehicle vehicle = new Vehicle();
+        Vehicle firstCar = new Vehicle();
 
-        Boolean result = parkingLot.park(vehicle);
+        Boolean result = parkingLot.park(firstCar);
 
         assertEquals(true, result);
+
+        System.out.println("testing");
     }
 }
