@@ -21,7 +21,5 @@ class ParkingLotTest {
         Boolean result = parkingLot.park(firstCar);
 
         assertEquals(true, result);
-
-        System.out.println("testing");
     }
 }
