@@ -1,6 +1,10 @@
 package org.example;
 
 public class Vehicle {
-    Vehicle(){
+
+    boolean isParked;
+
+    Vehicle() {
+        this.isParked = false;
     }
 }

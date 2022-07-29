@@ -14,12 +14,45 @@ class ParkingLotTest {
     }
 
     @Test
-    void shouldParkTheCar(){
+    void shouldParkTheCar() {
 
         Vehicle firstCar = new Vehicle();
 
         Boolean result = parkingLot.park(firstCar);
 
         assertEquals(true, result);
+    }
+
+    @Test
+    void shouldUnparkTheCar() {
+
+        Vehicle firstCar = new Vehicle();
+
+        parkingLot.park(firstCar);
+        Boolean unparkStatus = parkingLot.unpark(firstCar);
+
+        assertEquals(true, unparkStatus);
+    }
+
+    @Test
+    void shouldNotUnparkTheCarBeforeTheCarIsParked() {
+
+        Vehicle firstCar = new Vehicle();
+
+        Boolean unparkStatus = parkingLot.unpark(firstCar);
+
+        assertEquals(false, unparkStatus);
+    }
+
+    @Test
+    void shouldParkAgainAfterUnparking() {
+
+        Vehicle firstCar = new Vehicle();
+
+        parkingLot.park(firstCar);
+        parkingLot.unpark(firstCar);
+        Boolean parkStatus = parkingLot.park(firstCar);
+
+        assertEquals(true, parkStatus);
     }
 }
