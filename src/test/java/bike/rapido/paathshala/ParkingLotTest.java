@@ -1,4 +1,4 @@
-package org.example;
+package bike.rapido.paathshala;
 
 import org.junit.jupiter.api.Test;
 
@@ -55,4 +55,5 @@ class ParkingLotTest {
 
         assertEquals(true, parkStatus);
     }
+
 }
