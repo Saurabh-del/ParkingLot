@@ -15,7 +15,16 @@ public class ParkingLot {
     public Boolean park(Vehicle vehicle) {
         if(checkIfParked(vehicle) || checkIfParkingLotFull())
             return false;
+
         vehicles.add(vehicle);
+        if(checkIfParkingLotFull())
+        {
+            Person owner = new Person();
+            Person securityPersonnel = new Person();
+
+            owner.notifyPerson();
+            securityPersonnel.notifyPerson();
+        }
         return true;
     }
 

@@ -55,19 +55,6 @@ class ParkingLotTest {
 
         assertEquals(true, parkStatus);
     }
-@Test
-    void shouldNotParkIfParkingLotIsFull() {
 
-        Vehicle firstCar = new Vehicle();
-        Vehicle secondCar = new Vehicle();
-        Vehicle thirdCar = new Vehicle();
-
-        parkingLot.park(firstCar);
-        parkingLot.park(secondCar);
-        parkingLot.park(thirdCar);
-        Boolean isParkingLotFull = parkingLot.checkIfParkingLotFull();
-
-        assertEquals(false, isParkingLotFull);
-    }
 
 }
