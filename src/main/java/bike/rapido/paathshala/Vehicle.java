@@ -1,6 +1,9 @@
 package bike.rapido.paathshala;
 
 public class Vehicle {
-    Vehicle() {
+
+    int vehicleID;
+    Vehicle(int vehicleID) {
+        this.vehicleID = vehicleID;
     }
 }

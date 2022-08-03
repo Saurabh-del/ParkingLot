@@ -7,18 +7,22 @@ import java.util.List;
 public class ParkingLot {
 
     int parkingLotSize;
+    int parkingLotID;
 
     private List<ParkingLotObserver> parkingLotObserverList = new ArrayList<>();
 
-    ParkingLot(int parkingLotSize){
+    HashSet<Vehicle> vehicles = new HashSet<>();
+
+    ParkingLot(int parkingLotSize, int parkingLotID){
         this.parkingLotSize = parkingLotSize;
+        this.parkingLotID = parkingLotID;
     }
 
     public void addObserver(ParkingLotObserver parkingLotObserver) {
         this.parkingLotObserverList.add(parkingLotObserver);
     }
 
-    HashSet<Vehicle> vehicles = new HashSet<>();
+
     public Boolean park(Vehicle vehicle) {
         if(checkIfParked(vehicle) || checkIfParkingLotFull())
             return false;
