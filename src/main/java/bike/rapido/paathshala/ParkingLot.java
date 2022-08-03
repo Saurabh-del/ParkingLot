@@ -1,15 +1,22 @@
 package bike.rapido.paathshala;
 
+import java.util.ArrayList;
 import java.util.HashSet;
+import java.util.List;
 
 public class ParkingLot {
 
     int parkingLotSize;
 
+    private List<ParkingLotObserver> parkingLotObserverList = new ArrayList<>();
+
     ParkingLot(int parkingLotSize){
         this.parkingLotSize = parkingLotSize;
     }
 
+    public void addObserver(ParkingLotObserver parkingLotObserver) {
+        this.parkingLotObserverList.add(parkingLotObserver);
+    }
 
     HashSet<Vehicle> vehicles = new HashSet<>();
     public Boolean park(Vehicle vehicle) {
@@ -19,13 +26,14 @@ public class ParkingLot {
         vehicles.add(vehicle);
         if(checkIfParkingLotFull())
         {
-            Person owner = new Person();
-            Person securityPersonnel = new Person();
-
-            owner.notifyPerson();
-            securityPersonnel.notifyPerson();
+            notifyWhenFull();
         }
         return true;
+    }
+
+    private void notifyWhenFull() {
+        for(ParkingLotObserver parkingLotObserver : parkingLotObserverList)
+            parkingLotObserver.notifyAvailability();
     }
 
 

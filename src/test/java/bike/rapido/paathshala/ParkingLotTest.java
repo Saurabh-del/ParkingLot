@@ -7,10 +7,14 @@ import static org.junit.jupiter.api.Assertions.*;
 class ParkingLotTest {
 
     ParkingLot parkingLot;
+    Owner owner;
+    SecurityPersonnel securityPersonnel;
 
     @org.junit.jupiter.api.BeforeEach
     void setUp() {
         parkingLot = new ParkingLot(3);
+        owner = new Owner();
+        securityPersonnel = new SecurityPersonnel();
     }
 
     @Test
@@ -56,5 +60,27 @@ class ParkingLotTest {
         assertEquals(true, parkStatus);
     }
 
+
+    @Test
+    void shouldNotifyOnlyTheOwner() {  //PS 3  TC1
+
+        parkingLot.addObserver(owner);
+        parkingLot.park(new Vehicle());
+        parkingLot.park(new Vehicle());
+        parkingLot.park(new Vehicle());
+
+        assertTrue(parkingLot.checkIfParkingLotFull());
+    }
+
+    @Test
+    void shouldNotifyOnlyTheSecurityPersonnel() { //PS4  TC1
+
+        parkingLot.addObserver(securityPersonnel);
+        parkingLot.park(new Vehicle());
+        parkingLot.park(new Vehicle());
+        parkingLot.park(new Vehicle());
+
+        assertTrue(parkingLot.checkIfParkingLotFull());
+    }
 
 }
