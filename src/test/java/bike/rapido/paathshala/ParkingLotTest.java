@@ -73,6 +73,16 @@ class ParkingLotTest {
     }
 
     @Test
+    void shouldNotNotifyTheOwnerWhenParkingLotNotFull() {  //PS 3  TC2
+
+        parkingLot.addObserver(owner);
+        parkingLot.park(new Vehicle());
+        parkingLot.park(new Vehicle());
+
+        assertFalse(parkingLot.checkIfParkingLotFull());
+    }
+
+    @Test
     void shouldNotifyOnlyTheSecurityPersonnel() { //PS4  TC1
 
         parkingLot.addObserver(securityPersonnel);
@@ -81,6 +91,15 @@ class ParkingLotTest {
         parkingLot.park(new Vehicle());
 
         assertTrue(parkingLot.checkIfParkingLotFull());
+    }
+
+    @Test
+    void shouldNotNotifyTheSecurityPersonnelWhenParkingLotNotFull() { //PS4  TC2
+
+        parkingLot.addObserver(securityPersonnel);
+        parkingLot.park(new Vehicle());
+
+        assertFalse(parkingLot.checkIfParkingLotFull());
     }
 
 }
