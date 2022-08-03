@@ -19,10 +19,20 @@ public class Attendant {
     }
 
 
-    Boolean isParkingLotAvailable() {
+    int availableParkingLotNumber() {
         for(ParkingLot parkingLot : parkingLotList)
             if(!parkingLot.checkIfParkingLotFull())
-                return true;
-        return false;
+                return parkingLot.parkingLotID;
+        return -1;
+    }
+
+    int parkingLotNumberToUnparkFrom(Vehicle vehicleToSearch) {
+        for(ParkingLot parkingLot : parkingLotList) {
+            for(Vehicle vehicle: parkingLot.vehicles){
+                if(vehicle.vehicleID == vehicleToSearch.vehicleID)
+                    return parkingLot.parkingLotID;
+            }
+        }
+        return -1;
     }
 }

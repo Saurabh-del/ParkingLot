@@ -105,53 +105,88 @@ class ParkingLotTest {
     }
 
     @Test
-    void shouldTellThatParkingLotIsAvailable() { //PS4  TC2
+    void shouldTellTheParkingLotIDThatIsAvailable() { //PS4  TC2
 
         ParkingLot parkingLot1 = new ParkingLot(1, 111);
-        attendant.addParkingLot(parkingLot1);
         ParkingLot parkingLot2 = new ParkingLot(1, 222);
-        attendant.addParkingLot(parkingLot2);
         ParkingLot parkingLot3 = new ParkingLot(1, 333);
-        attendant.addParkingLot(parkingLot3);
         ParkingLot parkingLot4 = new ParkingLot(1, 444);
-        attendant.addParkingLot(parkingLot4);
         ParkingLot parkingLot5 = new ParkingLot(1, 555);
+        Vehicle car11 = new Vehicle(1);
+        Vehicle car13 = new Vehicle(3);
+        Vehicle car14 = new Vehicle(4);
+        Vehicle car15 = new Vehicle(5);
+
+
+        attendant.addParkingLot(parkingLot1);
+        attendant.addParkingLot(parkingLot2);
+        attendant.addParkingLot(parkingLot3);
+        attendant.addParkingLot(parkingLot4);
         attendant.addParkingLot(parkingLot5);
+        parkingLot1.park(car11);
+        parkingLot3.park(car13);
+        parkingLot4.park(car14);
+        parkingLot5.park(car15);
 
-        parkingLot1.park(new Vehicle(1));
-        parkingLot2.park(new Vehicle(2));
-        parkingLot3.park(new Vehicle(3));
-        parkingLot4.park(new Vehicle(4));
-
-        assertTrue(attendant.isParkingLotAvailable());
-
+        assertEquals(222, attendant.availableParkingLotNumber());
     }
     @Test
-    void shouldTellThatNoParkingLotIsAvailable() { //PS4  TC2
+    void shouldTellNegativeOneWhenNoParkingLotIsAvailable() { //PS4  TC2
 
         ParkingLot parkingLot1 = new ParkingLot(1, 111);
-        attendant.addParkingLot(parkingLot1);
         ParkingLot parkingLot2 = new ParkingLot(1, 222);
-        attendant.addParkingLot(parkingLot2);
         ParkingLot parkingLot3 = new ParkingLot(1, 333);
-        attendant.addParkingLot(parkingLot3);
         ParkingLot parkingLot4 = new ParkingLot(1, 444);
-        attendant.addParkingLot(parkingLot4);
         ParkingLot parkingLot5 = new ParkingLot(1, 555);
+        Vehicle car11 = new Vehicle(1);
+        Vehicle car12 = new Vehicle(2);
+        Vehicle car13 = new Vehicle(3);
+        Vehicle car14 = new Vehicle(4);
+        Vehicle car15 = new Vehicle(5);
+
+
+        attendant.addParkingLot(parkingLot1);
+        attendant.addParkingLot(parkingLot2);
+        attendant.addParkingLot(parkingLot3);
+        attendant.addParkingLot(parkingLot4);
         attendant.addParkingLot(parkingLot5);
+        parkingLot1.park(car11);
+        parkingLot2.park(car12);
+        parkingLot3.park(car13);
+        parkingLot4.park(car14);
+        parkingLot5.park(car15);
 
-        parkingLot1.park(new Vehicle(1));
-        parkingLot2.park(new Vehicle(2));
-        parkingLot3.park(new Vehicle(3));
-        parkingLot4.park(new Vehicle(4));
-        parkingLot5.park(new Vehicle(5));
-
-        assertFalse(attendant.isParkingLotAvailable());
+        assertEquals(-1, attendant.availableParkingLotNumber());
     }
 
     @Test
-    void shouldUnparkTheCarFromItsParkingLot() {
-        
+    void shouldTellTheParkingLotToUnparkFrom() {
+        ParkingLot parkingLot1 = new ParkingLot(1, 111);
+        ParkingLot parkingLot2 = new ParkingLot(1, 222);
+        ParkingLot parkingLot3 = new ParkingLot(1, 333);
+        ParkingLot parkingLot4 = new ParkingLot(1, 444);
+        ParkingLot parkingLot5 = new ParkingLot(1, 555);
+        Vehicle car11 = new Vehicle(1);
+        Vehicle car12 = new Vehicle(2);
+        Vehicle car13 = new Vehicle(3);
+        Vehicle car14 = new Vehicle(4);
+        Vehicle car15 = new Vehicle(5);
+
+
+        attendant.addParkingLot(parkingLot1);
+        attendant.addParkingLot(parkingLot2);
+        attendant.addParkingLot(parkingLot3);
+        attendant.addParkingLot(parkingLot4);
+        attendant.addParkingLot(parkingLot5);
+        parkingLot1.park(car11);
+        parkingLot2.park(car12);
+        parkingLot3.park(car13);
+        parkingLot4.park(car14);
+        parkingLot5.park(car15);
+
+        assertEquals(333, attendant.parkingLotNumberToUnparkFrom(car13));
+
+
     }
 
 }
