@@ -13,7 +13,7 @@ public class ParkingLot {
 
     HashSet<Vehicle> vehicles = new HashSet<>();
 
-    ParkingLot(int parkingLotSize, int parkingLotID){
+    ParkingLot(int parkingLotSize, int parkingLotID) {
         this.parkingLotSize = parkingLotSize;
         this.parkingLotID = parkingLotID;
     }
@@ -24,29 +24,36 @@ public class ParkingLot {
 
 
     public Boolean park(Vehicle vehicle) {
-        if(checkIfParked(vehicle) || checkIfParkingLotFull())
+        if (checkIfParked(vehicle) || checkIfParkingLotFull())
             return false;
-
         vehicles.add(vehicle);
-        if(checkIfParkingLotFull())
-        {
+        if (checkIfParkingLotFull()) {
             notifyWhenFull();
         }
         return true;
     }
 
-    private void notifyWhenFull() {
-        for(ParkingLotObserver parkingLotObserver : parkingLotObserverList)
-            parkingLotObserver.notifyAvailability();
-    }
-
-
     public Boolean unpark(Vehicle vehicle) {
-        if(checkIfParked(vehicle)) {
-            vehicles.remove(vehicle);
+        if (checkIfParked(vehicle)) {
+            if (checkIfParkingLotFull()) {
+                vehicles.remove(vehicle);
+                notifyWhenEmpty();
+            } else {
+                vehicles.remove(vehicle);
+            }
             return true;
         }
         return false;
+    }
+
+    private void notifyWhenFull() {
+        for (ParkingLotObserver parkingLotObserver : parkingLotObserverList)
+            parkingLotObserver.notifyAvailability();
+    }
+
+    private void notifyWhenEmpty() {
+        for (ParkingLotObserver parkingLotObserver : parkingLotObserverList)
+            parkingLotObserver.notifyUnavailability();
     }
 
     public Boolean checkIfParked(Vehicle vehicle) {
@@ -54,7 +61,12 @@ public class ParkingLot {
     }
 
     public Boolean checkIfParkingLotFull() {
-        if(vehicles.size() == parkingLotSize)
+        if (vehicles.size() == parkingLotSize)
+            return true;
+        return false;
+    }
+    public Boolean checkIfParkingLotHasSpaceAvailable() {
+        if (vehicles.size() != parkingLotSize)
             return true;
         return false;
     }

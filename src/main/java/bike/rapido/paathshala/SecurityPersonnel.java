@@ -1,6 +1,6 @@
 package bike.rapido.paathshala;
 
-public class SecurityPersonnel implements ParkingLotObserver{
+public class SecurityPersonnel implements ParkingLotObserver {
 
     @Override
     public void notifyAvailability() {
